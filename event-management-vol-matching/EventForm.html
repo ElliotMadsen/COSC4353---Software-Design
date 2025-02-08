@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Management Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation bar Section-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <!-- 
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">
+                        Home
+                    </a>
+                </li>-->
+                <li class="navbar__item">
+                    <a href="/EventForm.html" class="navbar__links">
+                        Event Form (admins)
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/VolunteerMatching.html" class="navbar__links">
+                        Volunteer Matching Form (admins)
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Event Management Form -->
+    <div class="event_container">
+        <div class="event_content">
+            <h1>Event Management Form</h1>
+            <form id="eventForm">
+                <label>Event Name:</label>
+                <input type="text" id="eventName" required maxlength="100">
+
+                <label>Event Description:</label>
+                <textarea id="eventDescription" required></textarea>
+
+                <label>Location:</label>
+                <textarea id="eventLocation" required></textarea>
+
+                <label>Required Skills:</label>
+                <div class="dropdown" id="dropdown">
+                    <div class="selectedOptions" id="selected-options">Select skills</div>
+                    <div class="options" id="options">
+                        <label><input type="checkbox" value="Leadership">Leadership</label>
+                        <label><input type="checkbox" value="Fundraising">Fundraising</label>
+                        <label><input type="checkbox" value="Mentoring">Mentoring</label>
+                        <label><input type="checkbox" value="Data-Entry">Data-Entry</label>
+                        <label><input type="checkbox" value="Time Management">Time Management</label>
+                    </div>
+                </div>
+
+                <label>Urgency:</label>
+                <select id="eventUrgency" require>
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+
+                <label>Event Date:</label>
+                <input type="date" id="eventDate" required>
+
+                <button class="event__btn" type="submit">Add New Event</button> 
+            </form>   
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
