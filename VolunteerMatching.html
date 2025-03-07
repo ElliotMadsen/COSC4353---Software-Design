@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Management Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation bar Section-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/EventForm.html" class="navbar__links">
+                        Event Form (admins)
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/VolunteerMatching.html" class="navbar__links">
+                        Volunteer Matching Form (admins)
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Volunteer Matching Form -->
+    <div class="volunteer_container">
+        <h1>Volunteer Matching Form</h1>
+        <form id="volMatchingForm">
+            <label for="volunteer">Volunteer Name:</label>
+            <select id="volunteer" reuired></select>
+            
+            <label for="matchedEvent">Matched Event:</label>
+            <input type="text" id="matchedEvent" readonly>
+            
+            <button class="matching_btn" type="submit">Confirm Match</button> 
+            </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
