@@ -1,0 +1,15 @@
+{
+    "name": "website",
+    "version": "1.0.0",
+    "description": "Volunteer organization backend",
+    "main": "server.js",
+    "scripts": {
+      "test": "jest --coverage"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "jest": "^29.6.2",
+      "supertest": "^6.3.3"
+    }
+  }
+  
