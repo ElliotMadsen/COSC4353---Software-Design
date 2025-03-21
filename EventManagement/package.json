@@ -1,0 +1,21 @@
+{
+  "name": "volunteermanagementwebsite",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
