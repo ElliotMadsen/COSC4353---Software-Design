@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications and Volunteer History</title>
+    <link rel="stylesheet" href="history.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('notifications')">Notifications</a></li>
+                <li><a href="#" onclick="showSection('history')">Volunteer History</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id="notifications" class="section hidden">
+            <h1>Notifications</h1>
+            <ul id="notification-list">
+                <!-- Notifications will be dynamically added here -->
+            </ul>
+        </div>
+
+        <div id="volunteer-history" class="section hidden">
+            <h1>Volunteer History</h1>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Event Date</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="history-body">
+                    <!-- Volunteer history will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
