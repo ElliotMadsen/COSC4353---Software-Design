@@ -1,44 +1,55 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
 const VolunteerHistory = require('./models/VolunteerHistory');
+const Notification = require('./models/Notification'); // NEW
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
 
-
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/volunteerOrg', {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 }).then(() => console.log('✅ Connected to MongoDB...'))
   .catch(err => console.error('❌ Could not connect to MongoDB...', err));
 
-// Sample data for notifications (this can later be in MongoDB too)
-let notifications = [
-  "You have been assigned to the Cooking Event on 2023-10-15.",
-  "New event created: Community Clean-Up on 2023-10-20.",
-  "Reminder: Your next event is on 2023-10-18."
-];
+// ==============================
+// NOTIFICATIONS (NOW FROM DB)
+// ==============================
 
-// Notifications endpoints
-app.get('/notifications', (req, res) => {
-  res.json(notifications);
+// GET all notifications
+app.get('/notifications', async (req, res) => {
+  try {
+    const notifications = await Notification.find();
+    res.json(notifications);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
-app.post('/notifications', (req, res) => {
+// POST a new notification
+app.post('/notifications', async (req, res) => {
   const { message } = req.body;
   if (!message) return res.status(400).json({ error: "Message is required" });
   if (typeof message !== 'string') return res.status(400).json({ error: "Message must be a string" });
 
-  notifications.push(message);
-  res.status(201).json({ message: "Notification added successfully" });
+  try {
+    const newNotification = new Notification({ message });
+    await newNotification.save();
+    res.status(201).json({ message: "Notification saved successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to save notification" });
+  }
 });
 
-// Volunteer history endpoints
+// ==============================
+// VOLUNTEER HISTORY
+// ==============================
+
+// GET history
 app.get('/volunteer-history', async (req, res) => {
   try {
     const history = await VolunteerHistory.find();
@@ -48,6 +59,7 @@ app.get('/volunteer-history', async (req, res) => {
   }
 });
 
+// UPDATE history status
 app.put('/volunteer-history/:id', async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
