@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Report Generator</title>
+  <style>
+    body {
+      font-family: "Inter", serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    label, select, button {
+      display: block;
+      margin: 15px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generate Report</h1>
+
+  <label for="reportType">Select Report:</label>
+  <select id="reportType">
+    <option value="volunteer-participation">Volunteer Participation</option>
+    <option value="event-assignments">Event Assignments</option>
+  </select>
+
+  <label for="format">Select Format:</label>
+  <select id="format">
+    <option value="pdf">PDF</option>
+    <option value="csv">CSV</option>
+  </select>
+
+  <button onclick="generateReport()">Generate Report</button>
+
+  <script>
+    function generateReport() {
+      const type = document.getElementById('reportType').value;
+      const format = document.getElementById('format').value;
+      const url = `http://localhost:3001/reports/${type}?format=${format}`;
+      window.open(url, '_blank');
+    }
+  </script>
+  
+</body>
+</html>
