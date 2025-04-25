@@ -1,4 +1,4 @@
-//make sure to install pdfmake! -->  npm install pdfmake
+// Make sure to install pdfmake! --> npm install pdfmake
 
 const express = require('express');
 const cors = require('cors');
@@ -26,8 +26,6 @@ app.use(express.static(path.join(__dirname, 'backend', 'public')));
 // --- Connect to the MongoDB database ---
 const dbUrl = 'mongodb://127.0.0.1:27017/COSC4353-Database';
 
-
-
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -35,8 +33,7 @@ mongoose.connect(dbUrl, {
 
 const db = mongoose.connection;
 
-
-// ---  Schemas ---
+// --- Schemas ---
 const MatchSchema = new mongoose.Schema({
     userID: mongoose.Schema.Types.ObjectId,
     eventID: mongoose.Schema.Types.ObjectId,
@@ -65,17 +62,17 @@ const UserProfileSchema = new mongoose.Schema({
     state: String,
 }, { collection: 'update_profiles' });
 
-const Match = reportingDb.model('Match', MatchSchema);
-const Event = reportingDb.model('Event', EventSchema);
-const UserProfile = reportingDb.model('UserProfile', UserProfileSchema);
-
+// --- Models ---
+const Match = mongoose.model('Match', MatchSchema);
+const Event = mongoose.model('Event', EventSchema);
+const UserProfile = mongoose.model('UserProfile', UserProfileSchema);
 
 // --- Volunteer Report (from update_profiles only) ---
 app.get('/reports/volunteer-participation', async (req, res) => {
     try {
-        const matches = await MatchModel.find({});
-        const events = await EventModel.find({});
-        const users = await UserProfileModel.find({});
+        const matches = await Match.find({});
+        const events = await Event.find({});
+        const users = await UserProfile.find({});
 
         const reportData = matches.map(match => {
             const volunteer = users.find(u => u._id.toString() === match.userID.toString());
@@ -139,9 +136,9 @@ app.get('/reports/volunteer-participation', async (req, res) => {
 
 app.get('/reports/event-assignments', async (req, res) => {
     try {
-        const matches = await MatchModel.find({});
-        const events = await EventModel.find({});
-        const users = await UserProfileModel.find({});
+        const matches = await Match.find({});
+        const events = await Event.find({});
+        const users = await UserProfile.find({});
 
         const eventMap = {};
         matches.forEach(match => {
@@ -225,8 +222,6 @@ app.get('/reports/event-assignments', async (req, res) => {
     }
 });
 
-
-
 // Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
@@ -234,3 +229,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
